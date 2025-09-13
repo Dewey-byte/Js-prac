@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>survey form</title>
+</head>
+<body>
+    <h2>Student Form</h2>
+    <form id="surveyForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <br><br>
+
+        <label for="subject">Favorite Subject:</label>
+        <select id="subject" name="subject" required>
+            <option >--Select Subject--</option>
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="English">English</option>
+            <option value="History">History</option>
+        </select><br><br>
+
+        <label>Select your hobbies:</label><br>
+        <input type="checkbox" name="hobby" value="Reading"> Reading
+        <input type="checkbox" name="hobby" value="Traveling"> Traveling
+        <input type="checkbox" name="hobby" value="Gaming"> Gaming  
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.getElementById("surveyForm").addEventListener("submit", function(event){
+            event.preventDefault();
+            
+            const name = document.getElementById("name").value;
+            const subject = document.getElementById("subject").value;
+
+            const hobbies = [];
+            document.querySelectorAll('input[name="hobby"]:checked').forEach(function(checkbox){
+                hobbies.push(checkbox.value);
+            });
+         alert("Name: " + name + "\nFavorite Subject: " + subject + "\nHobbies: " + hobbies.join(", "));
+        });
+    </script>
+</body>
+</html>

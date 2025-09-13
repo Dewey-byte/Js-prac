@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Survey Form</title>
+</head>
+<body>
+  <h2>Student Survey Form</h2>
+
+  <form id="surveyForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    <br>
+    <br>
+
+    <label for="subject">Favorite Subject:</label>
+    <select id="subject" name="subject" required>
+      <option value="">--Select Subject--</option>
+      <option value="Math">Math</option>
+      <option value="Science">Science</option>
+      <option value="English">English</option>
+      <option value="History">History</option>
+    </select><br><br>
+
+    <label>Select your hobbies:</label><br>
+    <input type="checkbox" name="hobby" value="Reading"> Reading
+    <input type="checkbox" name="hobby" value="Traveling"> Traveling
+    <input type="checkbox" name="hobby" value="Gaming"> Gaming 
+    <br>
+    <br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <h3>Collected Data:</h3>
+  <div id="output"></div>
+
+  <script>
+    const form = document.getElementById("surveyForm");
+    const output = document.getElementById("output");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // prevent page reload
+
+      const name = document.getElementById("name").value;
+      const subject = document.getElementById("subject").value;
+
+      // Collect all selected hobbies
+      const hobbies = [];
+      document.querySelectorAll('input[name="hobby"]:checked').forEach((checkbox) => {
+        hobbies.push(checkbox.value);
+      });
+
+      // Display collected data
+      output.innerHTML = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Favorite Subject:</strong> ${subject}</p>
+        <p><strong>Hobbies:</strong> ${hobbies.join(", ") || "None"}</p>
+      `;
+    });
+  </script>
+</body>
+</html>

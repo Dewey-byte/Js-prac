@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pre-test Ordering</title>
+</head>
+<body>
+    <h2>🍗Jollibee Ordering System</h2>
+
+    
+
+    <!-- Chickenjoy Options -->
+     <label for="chickenjoy">Choose your Chickenjoy:</label>
+    <select id="chickenjoy">
+        <option value="99"> 1-pc. Chickenjoy - ₱99</option>
+        <option value="149spag"> 1-pc. Chickenjoy w/ Jolly Spaghetti - ₱149</option>
+        <option value="149steak"> 1-pc. Chickenjoy w/ Burger Steak - ₱149</option>
+        <option value="205palabok">1-pc. Chickenjoy w/ Palabok - ₱205</option>
+        <option value="128mashed">1-pc. Chickenjoy w/ Mashed Potato - ₱128</option>
+      </select>
+      <br>
+      <input type="checkbox" id="spicy"> Spicy (+₱6)<br><br>  
+
+
+    <!-- Drinks -->
+  <label>Choose Drink: </label>
+  <select id="drink">
+    <option value="0">Without drink - ₱0</option>
+    <option value="69">Iced Mocha - ₱69</option>
+    <option value="61">Iced Tea / Coke / Sprite / Royal - ₱61</option>
+    <option value="66">Pineapple - ₱66</option>
+    <option value="59">Soda Float - ₱59</option>
+  </select><br><br>
+
+
+    <!-- Drink Size Options -->
+    <label >Drink Size:</label>
+    <select id="drinkSize">
+        <option value="0">Regular - ₱0</option>
+        <option value="15">Medium - ₱15</option>
+        <option value="25">Large - ₱25</option>
+    </select><br><br>
+
+    <!-- Add-ons -->
+    <label for="addons">Add-ons:</label><br>
+    <input type="checkbox" value="52" class="addon"> Chocolate Sundae - ₱52<br>
+  <input type="checkbox" value="35" class="addon"> Extra Rice - ₱35<br>
+  <input type="checkbox" value="66" class="addon"> Peach Mango Pie - ₱66<br>
+  <input type="checkbox" value="11" class="addon"> Extra Gravy - ₱11<br>
+  <input type="checkbox" value="53" class="addon"> Regular Fries - ₱53<br>
+  <input type="checkbox" value="42" class="addon"> Yumburger - ₱42<br><br>
+
+ 
+   
+    <button onclick="placeOrder()">Submit Order</button>
+
+       <!-- Summary Display -->
+       <div id="summaryBox" style="background:#f9f9f9; padding:10px; border:1px solid #ccc; margin-top:20px; display:none;">
+        <pre id="summary"></pre>
+        <div id="paymentSection" style="margin-top:10px; display:none;">
+            <label for="cashInput">Enter Cash: </label>
+            <input type="number" id="cashInput" placeholder="Enter amount">
+            <button onclick="finalizePayment()">Pay</button>
+        </div>
+    </div>
+
+    <script>
+        function placeOrder() {
+            
+            let name = prompt("Please enter your name:");
+            if (!name) {
+           alert("Name is required to proceed.");
+           return;
+           }
+
+    
+    
+          // Chickenjoy price
+          let chickenSelect = document.getElementById("chickenjoy");
+          let chickenText = chickenSelect.options[chickenSelect.selectedIndex].text;
+          let chickenValue = chickenSelect.value.match(/\d+/)[0]; // get price number
+          let chickenPrice = parseInt(chickenValue);
+    
+    
+          // Spicy option
+          if (document.getElementById("spicy").checked) {
+            chickenPrice += 6;
+            chickenText += " (Spicy)";
+          }
+    
+    
+          // Drink
+          let drinkSelect = document.getElementById("drink");
+          let drinkText = drinkSelect.options[drinkSelect.selectedIndex].text;
+          let drinkPrice = parseInt(drinkSelect.value);
+    
+    
+          // Drink Size
+          let sizeSelect = document.getElementById("drinkSize");
+          let sizeText = sizeSelect.options[sizeSelect.selectedIndex].text;
+          let sizePrice = parseInt(sizeSelect.value);
+    
+          if (drinkPrice === 0) {
+            sizePrice = 0; // ignore size if no drink
+          }
+    
+    
+          // Add-ons
+          let addonCheckboxes = document.getElementsByClassName("addon");
+          let addonTotal = 0;
+          let addonList = [];
+          for (let i = 0; i < addonCheckboxes.length; i++) {
+            if (addonCheckboxes[i].checked) {
+              addonTotal += parseInt(addonCheckboxes[i].value);
+              addonList.push(addonCheckboxes[i].nextSibling.textContent.trim());
+            }
+          }
+    
+    
+          // Subtotal
+          let subtotal = chickenPrice + drinkPrice + sizePrice + addonTotal;
+    
+
+          
+    
+          // Discount check
+          let discount = 0;
+          if (confirm("Are you a PWD or Senior Citizen?")) {
+            discount = subtotal * 0.02;
+          }
+    
+          let total = subtotal - discount;
+       
+           // Payment
+           let cash = parseFloat(prompt(
+                "Order Summary for " + name + "\n\n" +
+                "Chickenjoy: " + chickenText + "\n" +
+                "Drink: " + drinkText + " (" + sizeText + ")\n" +
+                (addonList.length > 0 ? "Add-ons: " + addonList.join("\n ") + "\n" : "") +
+                "\nSubtotal: ₱" + subtotal.toFixed(2) +
+                "\nDiscount: ₱" + discount.toFixed(2) +
+                "\nTotal: ₱" + total.toFixed(2) +
+                "\n\nEnter your cash:"
+            ));
+           
+            if (isNaN(cash) || cash < total) {
+                alert("Insufficient cash. Please enter at least ₱" + total.toFixed(2));
+                return;
+            }
+
+            let change = cash - total;
+
+          
+          // Build summary
+        alert(
+                "Order Summary for " + name + "\n\n" +
+                "Chickenjoy: " + chickenText + "\n" +
+                "Drink: " + drinkText + " (" + sizeText + ")\n" +
+                (addonList.length > 0 ? "Add-ons: " + addonList.join("\n") + "\n" : "") +
+                "\nSubtotal: ₱" + subtotal.toFixed(2) +
+                "\nDiscount: ₱" + discount.toFixed(2) +
+                "\nTotal: ₱" + total.toFixed(2) +
+                "\nCash: ₱" + cash.toFixed(2) +
+                "\nChange: ₱" + change.toFixed(2) +
+                "\n\n✅ Thank you, " + name + "!"
+        );
+
+        }
+      </script>
+</body>
+</html>
