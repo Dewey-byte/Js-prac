@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <title>Vote</title>
+    <style>
+        body{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(102, 99, 99);
+
+        }
+        .container{
+           
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+        .section{
+          
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Voting System</h1>
+
+    <div class="section">
+        <h2>President</h2>
+        <label for="president">Choose your President:</label><br>
+        <input type="radio" id="president" name="president" value="president1"> President 1<br>
+        <input type="radio" id="president" name="president" value="president2"> President 2<br>
+        <input type="radio" id="president" name="president" value="president3"> President 3<br>
+    </div>
+    <div class="section">
+        <h2>Secretary</h2>
+        <label for="secretary">Choose your Secretary:</label><br>
+        <input type="radio" id="secretary" name="secretary" value="secretary1"> Secretary 1<br>
+        <input type="radio" id="secretary" name="secretary" value="secretary2"> Secretary 2<br>
+        <input type="radio" id="secretary" name="secretary" value="secretary3"> Secretary 3<br>
+    </div>
+    <div class="section">
+        <h2>Treasurer</h2>
+        <label for="treasurer">Choose your Treasurer:</label><br>
+        <input type="radio" id="treasurer" name="treasurer" value="treasurer1"> Treasurer 1<br>
+        <input type="radio" id="treasurer" name="treasurer" value="treasurer2"> Treasurer 2<br>
+        <input type="radio" id="treasurer" name="treasurer" value="treasurer3"> Treasurer 3<br>
+    </div>
+    <button onclick="vote()">Submit Vote</button>
+    </div>
+    
+</body>
+<script>
+    function vote() {
+        var president = document.querySelector('input[name="president"]:checked').value;
+        var secretary = document.querySelector('input[name="secretary"]:checked').value;
+        var treasurer = document.querySelector('input[name="treasurer"]:checked').value;
+        alert("You have voted for \nPresident: " + president + "\nSecretary: " + secretary + ", \nTreasurer: " + treasurer);
+    }
+</script>
+</html>
