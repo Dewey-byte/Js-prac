@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Voting System 0</title>
+        <style>
+            * {
+                color: #FFF;
+                font-family: sans-serif;
+            }
+            body {
+                background-color: #333;
+                margin: 5% 20%;
+            }
+            .card {
+                background-color: #555;
+                border-radius: 12px;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 12px;
+                margin: 12px;
+            }
+            .option {
+                background-color: #666;
+                border-radius: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 4px 10px;
+                margin: 12px;
+            }
+            .options-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .submit {
+                background-color: #777;
+                padding: 4px 25px;
+                margin: 12px;
+                border-radius: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h1>VOTING SYSTEM</h1>
+        </div>
+        <form id="form"></form>
+        <div class="card">
+            <div>
+                <input class="submit" type="reset">
+                <input class="submit" type="submit">
+            </div>
+        </div>
+        <script>
+            const form = document.querySelector("#form");
+
+            const candidates = {
+                "President": ["pc0", "pc1", "pc2"],
+                "Vice_President": ["vpc0", "vpc1", "vpc2", "vpc3"],
+                "Secretary": ["sc0", "sc1"],
+                "Treasurer": ["tc0", "tc1"],
+                "Auditor": ["ac0", "ac1", "ac2"],
+                "Business_Manager": ["bmc0", "bmc1"]
+            };
+
+            for (const position in candidates) {
+                form.innerHTML += `
+                    <div class="card" id="${position}">
+                        <p>Please vote for a <strong>${position}</strong>:</p>
+                        <div class="options-row"></div>
+                    </div>
+                `;
+                const container = document.querySelector(`#${position} .options-row`);
+                candidates[position].forEach((candidate) => {
+                    container.innerHTML += `
+                        <div class="option"><label>
+                            <input type="radio" name="${position}" value="${candidate}" required> ${candidate}
+                        </label></div>
+                    `;
+                });
+            }
+        </script>
+    </body>
+</html>

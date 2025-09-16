@@ -16,8 +16,8 @@
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 400px;
+            
+            
         }
         .section{
           
@@ -56,10 +56,13 @@
 </body>
 <script>
     function vote() {
-        var president = document.querySelector('input[name="president"]:checked').value;
-        var secretary = document.querySelector('input[name="secretary"]:checked').value;
-        var treasurer = document.querySelector('input[name="treasurer"]:checked').value;
-        alert("You have voted for \nPresident: " + president + "\nSecretary: " + secretary + ", \nTreasurer: " + treasurer);
+        let president = document.querySelector('input[name="president"]:checked').value;
+        let secretary = document.querySelector('input[name="secretary"]:checked').value;
+        let treasurer = document.querySelector('input[name="treasurer"]:checked').value;
+        
+        alert("You have voted for \nPresident: " + president +
+            "\nSecretary: " + secretary +
+            "\nTreasurer: " + treasurer);
     }
 </script>
 </html>
