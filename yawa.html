@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rice Toppings Shop</title>
+</head>
+<body>
+  <h2>Rice Toppings Shop</h2>
+  <p>Order your favorite rice meals with toppings and drinks!</p>
+
+  <!-- Customer Name -->
+  <label>Customer Name:</label>
+  <input type="text" id="customerName" placeholder="Enter name"><br><br>
+
+  <!-- Rice Selection -->
+  <label>Select Rice:</label>
+  <select id="rice" onchange="updateTotal()">
+    <option value="10">Plain Rice (₱10)</option>
+    <option value="15">Java Rice (₱15)</option>
+    <option value="20">Chao Fan (₱20)</option>
+  </select><br><br>
+
+  <!-- Toppings Selection -->
+  <label>Select Topping:</label>
+  <select id="topping" onchange="updateTotal()">
+    <option value="20">Siomai (₱20)</option>
+    <option value="20">Hotdog (₱20)</option>
+    <option value="20">Nuggets (₱20)</option>
+    <option value="20">Ham (₱20)</option>
+    <option value="25">Sausage (₱25)</option>
+    <option value="30">Beef Tapa (₱30)</option>
+  </select><br><br>
+
+  <!-- Spicy Option -->
+  <input type="checkbox" id="spicy" value="5" onchange="updateTotal()"> Make it Spicy (+₱5)<br><br>
+
+  <!-- Drinks Selection -->
+  <label>Drinks:</label><br>
+  <input type="radio" name="drink" value="0"  onchange="updateTotal()"> No Drink (₱0)<br>
+  <input type="radio" name="drink" value="20" onchange="updateTotal()"> Coke (₱20)<br>
+  <input type="radio" name="drink" value="15" onchange="updateTotal()"> Blue Lemonade (₱15)<br>
+  <input type="radio" name="drink" value="15" onchange="updateTotal()"> Iced Tea (₱15)<br><br>
+
+  <!-- Quantity -->
+  <label>Quantity:</label>
+  <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()"><br><br>
+
+  <!-- Cash Input -->
+  <label>Cash Payment:</label>
+  <input type="number" id="cash" placeholder="Enter Cash Amount"><br><br>
+
+  <!-- Compute Button -->
+  <button onclick="computeChange()">Compute Change</button>
+
+  <h3 id="total">Total: ₱0</h3>
+  <h3 id="change">Change: ₱0</h3>
+
+  <script>
+    function calculateTotal() {
+      let rice = parseInt(document.getElementById("rice").value) || 0;
+      let topping = parseInt(document.getElementById("topping").value) || 0;
+      let spicy = document.getElementById("spicy").checked ? 5 : 0;
+      let drinkElement = document.querySelector('input[name="drink"]:checked');
+      let drink = drinkElement ? parseInt(drinkElement.value) : 0;
+      let quantity = parseInt(document.getElementById("quantity").value) || 1;
+
+      return (rice + topping + spicy + drink) * quantity;
+    }
+
+    function updateTotal() {
+      let total = calculateTotal();
+      document.getElementById("total").innerHTML = "Total: ₱" + total;
+    }
+
+    function computeChange() {
+      let total = calculateTotal();
+      let cash = parseInt(document.getElementById("cash").value) || 0;
+
+      if (cash < total) {
+        document.getElementById("change").innerHTML = "<span style='color:red;'>Insufficient Cash</span>";
+      } else {
+        let change = cash - total;
+        document.getElementById("change").innerHTML = "Change: ₱" + change;
+      }
+    }
+
+    // Initialize total when page loads
+    window.onload = updateTotal;
+  </script>
+</body>
+</html>
