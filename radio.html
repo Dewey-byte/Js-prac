@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="radio" name="sex" value="YOUR A MALE">MALE <br>
+    <input type="radio" name="sex"value="YOUR A FEMALE">FEMALE <br>
+    <button onclick="submit()">Submit</button>
+</body>
+<script>
+    function submit() {
+    let sex = document.querySelector('input[name="sex"]:checked').value;
+    alert(sex)
+    }
+</script>
+    
+</html>

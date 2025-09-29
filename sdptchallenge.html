@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDPT Challenge</title>
+</head>
+<body>
+    <label>ENTER YOUR NAME</label><br>
+    <input type="text" placeholder="Enter Firstname" id="fname"><br>
+    <input type="text" placeholder="Enter Lastname" id="lname"><br>
+    <label >SELECT YOUR COUNTRY</label><br>
+    <select name="country" id="country">
+        <option value="Philippines">Philippines</option>
+        <option value="Japan">Japan</option>
+        <option value="Taiwan">Taiwan</option>
+    </select>
+    <br>
+    <label >ENTER YOUR BIRTHDATE</label><br>
+    <input type="date" name="birthdate" id="birth">
+    <br>
+    <label >SELECT YOUR GENDER</label><br>
+    <input type="radio" name="sex" value="Male">MALE
+    <input type="radio" name="sex" value="Female">FEMALE
+    <input type="radio" name="sex" value="Others">Others
+    <br>
+    <input type="checkbox" name="terms" id="terms">Agree to Privacy Policy
+    <br>
+    <button onclick="submit()">Submit</button>
+
+    <hr>
+
+    <p id="lblfullname">Full Name:</p>
+    <p id="lblcountry">Country:</p>
+    <p id="lblbirthdate">Birthdate:</p>
+    <p id="lblgender">Gender:</p>
+</body>
+<script>
+    function submit(){
+        let fname = document.getElementById("fname").value;
+        let lname = document.getElementById("lname").value;
+        let country = document.querySelector("#country").value;
+        let birth = document.querySelector("#birth").value;
+        let sex = document.querySelector('input[name="sex"]:checked').value;
+        let terms = document.querySelector('input[name="terms"]:checked');
+
+       if(terms){
+          document.querySelector("#lblfullname").innerHTML = "Full Name: " + fname +" "+ lname;
+          document.querySelector("#lblcountry").innerHTML = "Country: " + country;
+          document.querySelector("#lblbirthdate").innerHTML = "Birthdate: " + birth;
+          document.querySelector("#lblgender").innerHTML = "Gender: " + sex;
+    }else{
+        alert("YOU NEED TO AGREE THE PRIVACY POLICY")
+    } 
+
+    }
+</script>
+</html>

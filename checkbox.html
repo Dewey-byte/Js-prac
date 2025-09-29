@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" id="check" name="check">PLS CHECK
+    <button onclick="submit()">Submit</button>
+    
+</body>
+<script>
+    function submit(){
+        let check = document.querySelector('input[name="check"]:checked');
+        
+        if(check){
+            alert("CHECKED")
+        } else{
+            alert("NOT CHECKED")
+        }
+    }
+</script>
+</html>
