@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <h2>Oten Order</h2>
+        <label >Types of dick:</label>
+        <select id="dick">
+        <option value="50" id="short">Short &#8369;50</option>
+        <option value="100" id="medium">Medium &#8369;100</option>
+        <option value="150" id="long">Long &#8369;150</option>
+        </select>
+        <br>
+        <input type="checkbox" id="lube" value="5">Add lube(&#8369;5)
+        <hr>
+        <label >Choose a Condom:</label>
+        <select id="condom">
+        <option value="50" id="strawberry">strawberry &#8369;50</option>
+        <option value="50" id="chocolate">chocolate &#8369;50</option>
+        <option value="100" id="invisible">invisible &#8369;100</option>
+        </select>
+        <br>
+        <hr>
+        <label >Add-ons:</label><br>
+        
+        <input type="checkbox" value="100" class="add"    id="vibrator">Vibrator(&#8369;100)<br>
+        <input type="checkbox" value="100"  class="add" id="belt">Belt(&#8369;100)<br>
+        <input type="checkbox" value="100"  class="add" id="Handcuff">Handcuff(&#8369;100)<br>
+        <input type="checkbox" value="100"  class="add" id="blindfold">Blindfold(&#8369;100)<br>
+        
+        <hr>
+        <button onclick="submit()">Submit</button>
+</body>
+<script>
+function submit(){
+        let dick = parseInt(document.querySelector("#dick").value);
+        let lube = parseInt(document.querySelector('input[id="lube"]:checked')?.value);
+        let condom = parseInt(document.querySelector("#condom").value);
+        let  add = parseInt(document.querySelector('input[class=]:checked')?.value);
+    
+
+}
+
+</script>
+</html>

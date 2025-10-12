@@ -26,7 +26,7 @@
     <br>
     <input type="checkbox" name="terms" id="terms">Agree to Privacy Policy
     <br>
-    <button onclick="submit()">Submit</button>
+    <button id="button">Submit</button>
 
     <hr>
 
@@ -36,23 +36,24 @@
     <p id="lblgender">Gender:</p>
 </body>
 <script>
-    function submit(){
-        let fname = document.getElementById("fname").value;
-        let lname = document.getElementById("lname").value;
-        let country = document.querySelector("#country").value;
-        let birth = document.querySelector("#birth").value;
-        let sex = document.querySelector('input[name="sex"]:checked').value;
-        let terms = document.querySelector('input[name="terms"]:checked');
+    function q(input) {return document.querySelector(input)}
 
-       if(terms){
-          document.querySelector("#lblfullname").innerHTML = "Full Name: " + fname +" "+ lname;
-          document.querySelector("#lblcountry").innerHTML = "Country: " + country;
-          document.querySelector("#lblbirthdate").innerHTML = "Birthdate: " + birth;
-          document.querySelector("#lblgender").innerHTML = "Gender: " + sex;
+    q("#button").onclick = () => {
+        let fname = q('#fname').value;
+        let lname = q("#lname").value;
+        let country = q("#country").value;
+        let birth = q("#birth").value;
+        let sex = q('input[name="sex"]:checked').value;
+        let terms = q('input[name="terms"]:checked');
+
+    if(terms){
+        q("#lblfullname").innerHTML = "Full Name: " + fname +" "+ lname;
+        q("#lblcountry").innerHTML = "Country: " + country;
+        q("#lblbirthdate").innerHTML = "Birthdate: " + birth;
+       q("#lblgender").innerHTML =  "Gender: " + sex;
     }else{
         alert("YOU NEED TO AGREE THE PRIVACY POLICY")
-    } 
-
+    }
     }
 </script>
 </html>

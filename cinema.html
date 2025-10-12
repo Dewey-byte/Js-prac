@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Enter your name" id="name" requires><br>
+    <select id="movie">
+        <option value="0" selected disabled>Select Movies</option>
+        <option value="100">Advengers</option>
+        <option value="150">frozen</option>
+        <option value="200">Inside Out</option>
+    </select><br>
+
+    <select  id="ticket">
+        <option value="1" selected disabled>Select Ticket</option>
+        <option value="100">VIP</option>
+        <option value="0">Normal</option>
+    </select><br>
+    <input type="number" name="quantity" id="quantity" placeholder="enter numer of ticket"><br>
+    <button onclick="submit()">Submit</button>
+    <h3 id="total">Total:</h3>
+    <script>
+        function submit(){
+            let name = parseInt(document.querySelector("#name")?.value || 0);
+            let movie = parseInt(document.querySelector("#movie")?.value || 0);
+            let ticket = parseInt(document.querySelector("#ticket")?.value || 0);
+            let quantity = parseInt(document.querySelector("#quantity")?.value || 1);
+
+        let total = (movie + ticket) * quantity;
+
+      if(!name == 0 || movie == 0 || ticket == 1){alert("required")}
+      else{
+        let total = (movie + ticket) * quantity;
+        document.querySelector("#total").innerHTML = "Total: " + total;
+      }
+        }
+
+        
+    </script>
+</body>
+</html>
