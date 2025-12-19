@@ -60,8 +60,8 @@ Js-prac/
 ├── onchange.html # onchange event practice
 ├── oninput.html # oninput event practice
 ├── radio.html # Radio button example
+└── time.html # Time input example
 
-(*This structure reflects the multiple practice HTML files in the repo.*) :contentReference[oaicite:4]{index=4}
 
 ---
 
